@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../../sap/zc_soitems_rept_cds/$metadata">
+        <edmx:Include Namespace="ZC_SOITEMS_REPT_CDS" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="zc_soitems_rept_cds_van.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="ZC_SOITEMS_REPT_CDS.zc_employees_vhType">
+                <Annotation Term="Communication.Contact">
+                    <Record>
+                        <PropertyValue Property="n">
+                            <Record>
+                                <PropertyValue Property="given" Path="FirstName"/>
+                                <PropertyValue Property="surname" Path="LastName"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_SOITEMS_REPT_CDS.zc_soitems_reptType/TransactionCurrency">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZC_SOITEMS_REPT_CDS.zc_soitems_reptType/QuantityUnit">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZC_SOITEMS_REPT_CDS.zc_soitems_reptType/ProductTextUpper">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZC_SOITEMS_REPT_CDS.zc_soitems_reptType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Sales Order Item"/>
+                        <PropertyValue Property="TypeNamePlural" String="Sales Order Items"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SalesOrder"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SalesOrderItem"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Employee"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationDateTime"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CompanyName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Country"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="NetAmountInTransactionCurrency"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Quantity"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Product"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ProductText"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>SalesOrder</PropertyPath>
+                        <PropertyPath>Employee</PropertyPath>
+                        <PropertyPath>CreationDateTime</PropertyPath>
+                        <PropertyPath>Country</PropertyPath>
+                        <PropertyPath>Product</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Communication.Contact">
+                    <Record>
+                        <PropertyValue Property="adr">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="type" EnumMember="Communication.ContactInformationType/preferred"/>
+                                    <PropertyValue Property="country" Path="Country"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Communication.Address">
+                    <Record>
+                        <PropertyValue Property="type" EnumMember="Communication.ContactInformationType/preferred"/>
+                        <PropertyValue Property="country" Path="Country"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

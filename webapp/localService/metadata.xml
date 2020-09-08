@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://AZRAP001.EASTUS2.CLOUDAPP.AZURE.COM:44303/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://AZRAP001.EASTUS2.CLOUDAPP.AZURE.COM:44303/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://AZRAP001.EASTUS2.CLOUDAPP.AZURE.COM:44303/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://AZRAP001.EASTUS2.CLOUDAPP.AZURE.COM:44303/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://AZRAP001.EASTUS2.CLOUDAPP.AZURE.COM:44303/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC_SOITEMS_REPT_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="zc_employees_vhType" sap:label="Value Help for Employees" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Employee"/>
+                </Key>
+                <Property Name="Employee" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Employee ID" sap:quickinfo="EPM: Employee ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40" sap:label="First Name" sap:quickinfo="EPM: First Name"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40" sap:label="Last Name" sap:quickinfo="EPM: Last Name"/>
+            </EntityType>
+            <EntityType Name="zc_soitems_reptType" sap:label="Sales Order Lines Report" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Sales Order ID" sap:quickinfo="EPM: Sales Order Number" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Item Position" sap:quickinfo="EPM: Sales Order Item Position"/>
+                <Property Name="Employee" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Employee ID" sap:quickinfo="EPM: Employee ID" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created At" sap:quickinfo="EPM: Created At" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CompanyName" Type="Edm.String" MaxLength="80" sap:label="Company" sap:quickinfo="EPM: Company Name"/>
+                <Property Name="CompanyNameUpper" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country" sap:quickinfo="EPM: Country Code"/>
+                <Property Name="NetAmountInTransactionCurrency" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency" sap:label="Net Amount" sap:quickinfo="EPM: Total Net Amount"/>
+                <Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:quickinfo="EPM: Currency Code" sap:semantics="currency-code"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="QuantityUnit" sap:label="Quantity" sap:quickinfo="EPM: Quantity"/>
+                <Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Measure" sap:quickinfo="EPM: Quantity Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Product" Type="Edm.String" MaxLength="10" sap:label="Product ID" sap:quickinfo="EPM: Product ID"/>
+                <Property Name="ProductText" Type="Edm.String" MaxLength="255" sap:label="Description" sap:quickinfo="EPM: Text field for names and descriptions"/>
+                <Property Name="ProductTextUpper" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="to_Employees" Relationship="ZC_SOITEMS_REPT_CDS.assoc_CF5BE5F912A50EB64676C93C38D2711E" FromRole="FromRole_assoc_CF5BE5F912A50EB64676C93C38D2711E" ToRole="ToRole_assoc_CF5BE5F912A50EB64676C93C38D2711E"/>
+            </EntityType>
+            <Association Name="assoc_CF5BE5F912A50EB64676C93C38D2711E" sap:content-version="1">
+                <End Type="ZC_SOITEMS_REPT_CDS.zc_soitems_reptType" Multiplicity="1" Role="FromRole_assoc_CF5BE5F912A50EB64676C93C38D2711E"/>
+                <End Type="ZC_SOITEMS_REPT_CDS.zc_employees_vhType" Multiplicity="0..1" Role="ToRole_assoc_CF5BE5F912A50EB64676C93C38D2711E"/>
+            </Association>
+            <EntityContainer Name="ZC_SOITEMS_REPT_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="zc_employees_vh" EntityType="ZC_SOITEMS_REPT_CDS.zc_employees_vhType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="zc_soitems_rept" EntityType="ZC_SOITEMS_REPT_CDS.zc_soitems_reptType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_CF5BE5F912A50EB64676C93C38D2711E" Association="ZC_SOITEMS_REPT_CDS.assoc_CF5BE5F912A50EB64676C93C38D2711E" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="zc_soitems_rept" Role="FromRole_assoc_CF5BE5F912A50EB64676C93C38D2711E"/>
+                    <End EntitySet="zc_employees_vh" Role="ToRole_assoc_CF5BE5F912A50EB64676C93C38D2711E"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZC_SOITEMS_REPT_CDS.zc_soitems_reptType/Employee" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value Help for Employees"/>
+                        <PropertyValue Property="CollectionPath" String="zc_employees_vh"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Employee"/>
+                                    <PropertyValue Property="ValueListProperty" String="Employee"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="FirstName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="LastName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_SOITEMS_REPT_CDS.ZC_SOITEMS_REPT_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://AZRAP001.EASTUS2.CLOUDAPP.AZURE.COM:44303/sap/opu/odata/sap/ZC_SOITEMS_REPT_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://AZRAP001.EASTUS2.CLOUDAPP.AZURE.COM:44303/sap/opu/odata/sap/ZC_SOITEMS_REPT_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
