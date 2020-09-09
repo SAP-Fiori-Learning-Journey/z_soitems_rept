@@ -30,15 +30,19 @@ define view zc_soitems_rept
         selectionField.position: 20,
         lineItem.position: 30
       }
-      
+
       @Consumption.valueHelp: '_Employees'
       _SalesOrder._CreatedByUser.Employee,
 
+      @EndUserText.label: 'Creation Date'
       @UI: {
         selectionField.position: 30,
         lineItem.position: 40
       }
-      _SalesOrder.CreationDateTime,
+      tstmp_to_dats(_SalesOrder.CreationDateTime,
+                    abap_system_timezone($session.client,'NULL'),
+                    $session.client,
+                    'NULL')                                                           as CreationDate,
 
       @UI.lineItem.position: 50
       @Search: {
@@ -46,7 +50,7 @@ define view zc_soitems_rept
         fuzzinessThreshold: 0.8,
         ranking: #HIGH
       }
-      _SalesOrder._Customer.CompanyName                                                      as CompanyName,
+      _SalesOrder._Customer.CompanyName                                               as CompanyName,
 
       @UI: {
         lineItem.position: 60,
@@ -78,8 +82,7 @@ define view zc_soitems_rept
         fuzzinessThreshold: 0.8,
         ranking: #HIGH
       }
-      _Product._NameGroup._ShortText[ Language = $session.system_language ].ShortText        as ProductText,
+      _Product._NameGroup._ShortText[ Language = $session.system_language ].ShortText as ProductText,
 
       _Employees
-
 }
