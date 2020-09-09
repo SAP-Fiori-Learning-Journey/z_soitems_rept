@@ -5,6 +5,7 @@
 }
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Value Help for Employees'
+@VDM.viewType: #CONSUMPTION
 @Search.searchable: true
 @OData.publish: true
 /*+[hideWarning] { "IDS" : [ "KEY_CHECK" ] }*/
